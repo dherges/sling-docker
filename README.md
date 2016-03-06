@@ -36,9 +36,12 @@ $ eval $(docker-machine env myBoxName)
 ## Run the Docker container
 
 ```bash
-$ docker build .
-```
+# Build the Dockerfile and tag the image
+$ docker build -t sling-docker .
 
+# Run the image inside a container
+$ docker run -i -t -p 8080:8080 sling-docker
+```
 
 
 

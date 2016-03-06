@@ -30,7 +30,7 @@ $ docker-machine start myBoxName
 $ docker-machine env myBoxName
 
 # configure your shell
-eval $(docker-machine env myBoxName)
+$ eval $(docker-machine env myBoxName)
 ```
 
 ## Run the Docker container

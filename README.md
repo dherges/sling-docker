@@ -40,7 +40,14 @@ $ eval $(docker-machine env myBoxName)
 $ docker build -t sling-docker .
 
 # Run the image inside a container
-$ docker run -i -t -p 8080:8080 sling-docker
+$ docker run -i -t -p 8080:8080 --name mysling sling-docker
+
+# Stop the container
+$ docker stop mysling
+
+# Start the container
+$ docker start mysling
+
 ```
 
 

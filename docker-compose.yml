@@ -5,7 +5,7 @@ services:
     ports:
      - "8080:8080"
     links:
-     - mongo
+     - mongo:mongo
      - elasticsearch
     environment:
      - SLING_OPTS=-Dsling.run.modes=oak_mongo -Doak.mongo.uri=mongodb://mongo:27017
@@ -18,13 +18,18 @@ services:
      - "9300:9300"
   logstash:
     image: logstash:2.2
+    command: logstash -f /etc/logstash/conf.d/logstash.conf
+    volumes:
+      - ./logstash/config:/etc/logstash/conf.d
     ports:
       - "5000:5000"
     links:
-      - elasticsearch
+      - elasticsearch:elasticsearch
   kibana:
     image: kibana:4.4
+    volumes:
+      - ./kibana/config/:/opt/kibana/config/
     ports:
       - "5601:5601"
     links:
-      - elasticsearch
+      - elasticsearch:elasticsearch

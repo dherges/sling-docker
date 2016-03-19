@@ -30,15 +30,25 @@ $ docker-machine start myBoxName
 $ docker-machine env myBoxName
 
 # configure your shell
-eval $(docker-machine env myBoxName)
+$ eval $(docker-machine env myBoxName)
 ```
 
 ## Run the Docker container
 
 ```bash
-$ docker build .
-```
+# Build the Dockerfile and tag the image
+$ docker build -t sling-docker .
 
+# Run the image inside a container
+$ docker run -i -t -p 8080:8080 --name mysling sling-docker
+
+# Stop the container
+$ docker stop mysling
+
+# Start the container
+$ docker start mysling
+
+```
 
 
 

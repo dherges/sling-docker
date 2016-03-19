@@ -1,0 +1,18 @@
+version: '2'
+services:
+  sling:
+    image: apachesling/sling:8
+    ports:
+     - "8080:8080"
+    links:
+     - mongo
+     - elasticsearch
+    environment:
+     - SLING_OPTS=-Dsling.run.modes=oak_mongo -Doak.mongo.uri=mongodb://mongo:27017
+  mongo:
+    image: mongo:3.0
+  elasticsearch:
+    image: elasticsearch:2.2
+    ports:
+     - "9200:9200"
+     - "9300:9300"
